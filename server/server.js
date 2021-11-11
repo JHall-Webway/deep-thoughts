@@ -10,6 +10,4 @@ require('./config/connection').once('open', async () => {
 
   ApolloServer.applyMiddleware({ app: server });
 
-  server.listen(PORT = process.env.PORT || 3001, console.log(`API server running on port ${PORT}`));
-
-});
+  server.listen(PORT = process.env.PORT || 3001, console.log(`API server running on port ${PORT}`))});
