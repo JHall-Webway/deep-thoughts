@@ -9,16 +9,22 @@ const ThoughtForm = () => {
     const [characterCount, setCharacterCount] = useState(0);
     const [addThought, { error }] = useMutation(ADD_THOUGHT, {
         update(cache, { data: { addThought } }) {
-            try {
-                const { thoughts } = cache.readQuery({ query: QUERY_THOUGHTS });
-                cache.writeQuery({ query: QUERY_THOUGHTS, data: { thoughts: [addThought, ...thoughts] } })
-            } catch (e) {
-                console.error(e);
-            }
-            const { me } = cache.readQuery({ query: QUERY_ME });
-            cache.writeQuery({ query: QUERY_ME, data: { me: { ...me, thoughts: [...me.thoughts, addThought] } } });
+          try {
+            const { thoughts } = cache.readQuery({ query: QUERY_THOUGHTS });
+            cache.writeQuery({
+              query: QUERY_THOUGHTS,
+              data: { thoughts: [addThought, ...thoughts] }
+            });
+          } catch (e) {
+            console.error(e);
+          }
+          const { me } = cache.readQuery({ query: QUERY_ME });
+          cache.writeQuery({
+            query: QUERY_ME,
+            data: { me: { ...me, thoughts: [...me.thoughts, addThought] } }
+          });
         }
-    });
+      });
 
     const handleChange = ({ target }) => {
         if (target.value.length <= 280) {
