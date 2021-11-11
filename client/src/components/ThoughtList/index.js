@@ -8,13 +8,13 @@ const ThoughtList = ({ thoughts, title }) => {
             thoughts.map(thought => (
                 <div key={thought._id} className="card mb-3">
                     <p className="card-header">
-                        {thought.username}
+                        {thought.username}{' '}
                         thought on {thought.createdAt}
                     </p>
                     <div className="card-body">
                         <p>{thought.thoughtText}</p>
                         <p className="mb-0">
-                            Reactions: {thought.reactionCount} || Click to{' '}
+                            Reactions: {thought.reactionCount} | Click to{' '}
                             {thought.reactionCount ? 'see' : 'start'} the discussion!
                         </p>
                     </div>
