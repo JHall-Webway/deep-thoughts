@@ -10,8 +10,8 @@ require('./config/connection').once('open', async () => {
   ApolloServer.applyMiddleware({ app: server });
 
   path = require('path');
-  if (process.env.NODE_ENV !== 'production') {
-    server.use(express.static(path.join(__dirname, '../client/build')))
+  if (process.env.NODE_ENV === 'production') {
+    server.use(express.static(path.join(__dirname, '../client/build')));
   };
 
   server.get('*', (req, res) => {
